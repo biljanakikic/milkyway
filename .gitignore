@@ -10,8 +10,14 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/schema.rb
+/config/database.yml
+/config/secrets.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore shitty Mac files... wtf is up with those?
+*\.DS_*
