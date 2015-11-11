@@ -1,5 +1,10 @@
 
  <h1>All Courses</h1>
- <%= $courses %>
-
+<ul>
+  <% $courses.each do |course| %>
+      <% $course.each do |title| %>
+          <li><%=h title %></li>
+      <% end %>
+  <% end %>
+</ul>
  
