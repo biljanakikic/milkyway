@@ -1,0 +1,13 @@
+ 
+<%  num=Integer(params["num"])
+ %>
+
+
+<h1> Edit <%= $courses[num]['title'] %></h1>
+ <li><%= $courses[num]['title'] %></li>
+ 
+<%= form_tag  %>
+  <%= text_field_tag $courses[num]['title'], $courses[num]['title'] %>
+ <div><%= submit_tag 'Save' %></div>
+
+ 
