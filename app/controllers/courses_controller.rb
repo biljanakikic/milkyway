@@ -35,9 +35,27 @@ def edit
 end
 
 def update
+  num=0
+   cnum=Integer(params["num#{num}"])
+   title=params["title"]
+   $courses[cnum]['title']=title
+  render :text => $courses
 
 end
+def update_lessons
 
+    num=Integer(params["num"])
+  $courses[num]['lessons'].each do |lesson|
+   lnum+=1
+  # l_num=Integer(params["num{#lnum-1}"])
+   l_title=params["ltitle{#lnum-1}"]
+   $courses[num]['lessons'][lnum]['title']=l_title
+
+    render :text => $courses[num]['lessons']
+
+    end
+
+end
 
     
 

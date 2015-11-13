@@ -1,0 +1,43 @@
+<%  num=Integer(params["num"])
+  
+ %>
+<ul>
+	<%=  form_tag({:action => 'update_lessons'} ,  method: :get ) %>
+   <%= text_field_tag 'num', num %>
+	<% lnum=0
+	  
+    $courses[num]['lessons'].each do |lesson|
+    lnum+=1 %>
+    
+     <li><a href="edit_tracks?num=<%= num %>&lnum=<%= lnum-1 %>"><%=h lesson['title'] %></a>
+
+
+ 
+
+  <%= text_field_tag "l_title#{lnum-1}", lesson['title']  %>
+ 
+
+
+     	<ul> 
+
+       <% tnum=0
+       lesson['tracks'].each do |track| 
+           tnum+=1 
+      	%>
+
+      	<li><%=h track['title'] %></li>
+        
+    
+            <%= text_field_tag "t_title#{tnum-1}", track['title']  %>
+
+
+           <% end %>
+     </ul>
+
+
+     </li></li>
+
+  <% end %>
+  <div><%= submit_tag 'Save' %></div>
+  
+</ul>

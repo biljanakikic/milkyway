@@ -1,6 +1,9 @@
  <h1>All Courses</h1>
 <ul>
-  <% num=0
+	
+  <% 
+
+  num=0
     $courses.each do |course|
     num+=1%>
      <li><a href="edit_course?num=<%= num-1 %>"><%=h course['title'] %></a></li>

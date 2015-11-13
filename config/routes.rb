@@ -7,7 +7,12 @@ Rails.application.routes.draw do
 
   get 'courses' => "courses#index", :as => "courses"
   get 'edit_course' => 'courses#edit_course',:as => "edit_course"
- # get "courses_all" => "courses#courses", :as => "courses_all"
+  get "courses/update" => "courses#update", :as => 'courses/update'
+  get 'edit_lessons' => 'courses#edit_lessons',:as => "edit_lessons" 
+  get 'edit_tracks' => 'courses#edit_tracks',:as => "edit_tracks"
+   get 'courses/update_lessons' => 'courses#update_lessons',:as => "courses/update_lessons"
+
+
   root :to => "users#new"
   resources :users
   resources :sessions
