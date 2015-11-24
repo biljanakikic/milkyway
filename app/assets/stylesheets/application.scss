@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+
+
+// Helper classes
+.whitespace40 { clear:both; height: 4em; }
+.whitespace30 { clear:both; height: 3em; }
+.whitespace20 { clear:both; height: 2em; }
+.whitespace10 { clear:both; height: 1em; }
+
+.m-right15 { margin-right:15px; }
+.m-right25 { margin-right:25px; }
+.m-left15 { margin-left:15px; }
+.m-left25 { margin-left:25px; }
+.m-lat15 { margin:0 15px; }
+.m-lat25 { margin:0 25px; }
+.m-top6 { margin-top: 6px; } 
+
+.text-white { color:#fff; }

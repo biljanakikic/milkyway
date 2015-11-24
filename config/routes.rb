@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
- 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  
 
-  get 'courses' => "courses#index", :as => "courses"
-  get 'edit_course' => 'courses#edit_course',:as => "edit_course"
-  get "courses/update" => "courses#update", :as => 'courses/update'
-  get 'edit_lessons' => 'courses#edit_lessons',:as => "edit_lessons" 
-  get 'edit_tracks' => 'courses#edit_tracks',:as => "edit_tracks"
-   get 'courses/update_lessons' => 'courses#update_lessons',:as => "courses/update_lessons"
+  devise_for :admins
+  authenticated :admin do
+    get "courses/:id/edit", to: "courses#edit", as: 'edit_course'
+    root to: "courses#index"
+  end
+
+  unauthenticated do
+    devise_scope :admin do
+      get "*path" => "devise/sessions#new"
+      root to: "devise/sessions#new", as: :public_root_path
+    end
+  end
+ # get 'courses' => "courses#index", :as => "courses"
+ # get 'edit_course/:id' => 'courses#edit_course',:as => "edit_course"
+ # get "courses/update" => "courses#update", :as => 'update'
+  
 
 
-  root :to => "users#new"
-  resources :users
-  resources :sessions
+ # root :to => "courses#index"
   
   
 

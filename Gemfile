@@ -5,8 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-#bcrypt
-gem "bcrypt", :require => "bcrypt"
 # User model
 gem 'protected_attributes'
 # json
@@ -28,6 +26,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Bootstrap library for Rails
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
+
+gem 'devise'
+
+# http.rb is an easy-to-use client library for making requests from Ruby. It uses a simple method chaining system for building requests.
+gem 'http'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

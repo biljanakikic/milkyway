@@ -1,15 +1,21 @@
- <h1>All Courses</h1>
-<ul>
-	
-  <% 
-
-  num=0
-    $courses.each do |course|
-    num+=1%>
-     <li><a href="edit_course?num=<%= num-1 %>"><%=h course['title'] %></a></li>
-    
-       	
-     
-  <% end %>
-</ul>
- 
+<section id="wrapper" class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+	<h1>Courses</h1>
+	<table class="table table-condensed table-striped">
+		<thead>
+			<th>Title</th>
+			<th>AppleID</th>
+			<th>Live</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<% @courses.each_with_index do |course, i| %>
+			<tr>
+				<td><%= course["title"] %></td>
+				<td><%= course["apple_product_id"] %></td>
+				<td><%= course["live"] %></td>
+				<td><%= link_to "#{course['title']}", edit_course_path(i) %></td>
+			</tr>			
+			<% end %>
+		</tbody>
+	</table>
+</section>
