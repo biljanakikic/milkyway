@@ -1,13 +1,11 @@
 <%  id=Integer(params[:id]) %>
-
 <section id="wrapper" class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
- <h3> Edit <%= @courses[num]['title'] %></h3>
- 
- <%=  form_tag({:action => 'update'} ,  method: :get ) %>
-    <%= text_field_tag "id#{id}", id %>
-    <%= text_field_tag 'title', @courses[id]['title'] %>
- <div><%= submit_tag 'Save' %></div>
-
+	 <h3> Edit <%= @courses[id]['title'] %></h3>
+	 <%=  form_tag({:action => 'update'} ) do %>
+	    <%= hidden_field_tag "id", id %>
+	    <%= text_field_tag 'title', @courses[id]['title'] %>
+	    <div><%= submit_tag 'Save' %></div>
+	 <% end %>
 </section>
 
  
