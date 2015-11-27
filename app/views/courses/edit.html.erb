@@ -1,9 +1,10 @@
-<%  id=Integer(params[:id]) %>
+<%  i=Integer(params[:i]) %>
 <section id="wrapper" class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-	 <h3> Edit <%= @courses[id]['title'] %></h3>
+	 <h3> Edit <%= @courses[i]['title'] %></h3>
 	 <%=  form_tag({:action => 'update'} ) do %>
-	    <%= hidden_field_tag "id", id %>
-	    <%= text_field_tag 'title', @courses[id]['title'] %>
+	    <%= hidden_field_tag "i", i %>
+	    <%= text_field_tag 'title', @courses[i]['title'] %>
+	    <%= text_field_tag 'author', @courses[i]['author'] %>
 	    <div><%= submit_tag 'Save' %></div>
 	 <% end %>
 </section>

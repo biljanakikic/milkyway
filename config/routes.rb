@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   devise_for :admins
   authenticated :admin do
-    get "courses/:id/edit", to: "courses#edit", as: 'edit_course'
-    post "courses/:id/update", to: "courses#update"
+    get "courses/:i/edit", to: "courses#edit", as: 'edit_course'
+    post "courses/:i/update", to: "courses#update"
     root to: "courses#index"
   end
 

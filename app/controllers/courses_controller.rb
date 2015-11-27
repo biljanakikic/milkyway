@@ -1,7 +1,8 @@
 class CoursesController < ApplicationController
 
  before_action :authenticate_admin!
- #before_filter :index
+ respond_to :html, :json
+ # before_filter :index
 
   def new
     
@@ -12,6 +13,8 @@ class CoursesController < ApplicationController
         .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4")
         .get("https://api.audiolumin.com/alpha/mw/courses")
      @courses = JSON.parse(response.body)
+
+
   end
 
   def edit
@@ -25,27 +28,20 @@ class CoursesController < ApplicationController
      response = HTTP
         .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4")
         .get("https://api.audiolumin.com/alpha/mw/courses")
-     @courses = JSON.parse(response.body)
-     
-     id=Integer(params["id"])
-     title=params["title"]
-     @courses[id]['title']=title
-     render  :text => @courses[id]
-     response= HTTP
-            .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4")
-            .post("https://api.audiolumin.com/alpha/mw/course/#{id}", :json => @courses[id])
-     # @headers = {
-     #    "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4",
-     #    "Content-Type" => "application/json"
-     #  }
-     #post("https://api.audiolumin.com/alpha/mw/course/#{id}"), @courses[id].to_json, @headers
-      # @host = 'localhost'
-      # @port = '3000'
-      # @path = "https://api.audiolumin.com/alpha/mw/course/#{id}"
-      # request = Net::HTTP::Post.new(@path, initheader = {'Content-Type' =>'application/json',"apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4"})
-      # request.body = @courses[id].to_json
-      # response = Net::HTTP.new(@host, @port).start {|http| http.request(request) }
-      # rputs "Response #{response.code} #{response.message}: #{response.body}"
+     @courses =JSON.parse(response.body)
+     i=Integer(params["i"])
+     id=@courses[i]['id']
+     params.each do|key, value|
+        @courses[i][key]=value
+        # if value=='' 
+        #  redirect_to (edit_course_path(i))
+        # end
+     end
+    #render :json =>@courses[i]
+    request = HTTP
+      .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4", "Accept" => "application/json")
+      .post("https://api.audiolumin.com/alpha/mw/courses/#{id}", :json => @courses[i])
+    redirect_to (root_url) 
    end     
 
 end
