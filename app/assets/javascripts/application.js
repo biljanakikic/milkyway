@@ -19,6 +19,6 @@
 
   $(document).ready(function() {
     $.validate();
-    //console.log('ok');
+   //console.log('ok');
   });
 
