@@ -1,11 +1,13 @@
 <%  i=Integer(params[:i]) %>
 <section id="wrapper" class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 	 <h3> Edit <%= @courses[i]['title'] %></h3>
-	 <%=  form_tag({:action => 'update'} ) do %>
+	 <%=  form_tag({:action => 'update'}) do %>
 	    <%= hidden_field_tag "i", i %>
-	    <%= text_field_tag 'title', @courses[i]['title'] %>
-	    <%= text_field_tag 'author', @courses[i]['author'] %>
-	    <div><%= submit_tag 'Save' %></div>
+	    <%= text_field_tag :title,  @courses[i]['title'], data: {
+      :validation => "required validate_min_length length1",
+      "validation-error-msg" => "This field is required"
+    } %>
+	    <div><%= submit_tag 'Save Course' %></div>
 	 <% end %>
 </section>
 

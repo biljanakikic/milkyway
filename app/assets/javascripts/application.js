@@ -15,3 +15,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.form-validator
+
+  $(document).ready(function() {
+    $.validate();
+    //console.log('ok');
+  });
+

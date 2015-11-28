@@ -1,11 +1,15 @@
 class CoursesController < ApplicationController
 
  before_action :authenticate_admin!
- respond_to :html, :json
- # before_filter :index
+ respond_to :json
+#before_filter :index
 
   def new
     
+  end
+
+  def create
+   
   end
     
   def index
@@ -23,6 +27,7 @@ class CoursesController < ApplicationController
         .get("https://api.audiolumin.com/alpha/mw/courses")
      @courses = JSON.parse(response.body)
   end
+    
 
   def update
      response = HTTP
@@ -32,16 +37,15 @@ class CoursesController < ApplicationController
      i=Integer(params["i"])
      id=@courses[i]['id']
      params.each do|key, value|
-        @courses[i][key]=value
-        # if value=='' 
-        #  redirect_to (edit_course_path(i))
-        # end
+        if @courses[i][key]
+           @courses[i][key]=value
+        end
      end
-    #render :json =>@courses[i]
-    request = HTTP
-      .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4", "Accept" => "application/json")
+  #  render :json =>@courses[i]
+     request =HTTP
+      .headers("Content-Type" => "application/json", "apik" => "3RqZPzuT7o2FRfnQxIhmqOAbFZBv67a8EXVMktOpEkguVBcaCloAQvLtz4fYpJ4")
       .post("https://api.audiolumin.com/alpha/mw/courses/#{id}", :json => @courses[i])
-    redirect_to (root_url) 
+     redirect_to (root_url) 
    end     
 
 end

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   devise_for :admins
   authenticated :admin do
     get "courses/:i/edit", to: "courses#edit", as: 'edit_course'
-    post "courses/:i/update", to: "courses#update"
-    root to: "courses#index"
+   post "courses/:i/update", to: "courses#update"#, as: 'update_course'
+       root to: "courses#index"
   end
 
   unauthenticated do
@@ -13,9 +13,7 @@ Rails.application.routes.draw do
       root to: "devise/sessions#new", as: :public_root_path
     end
   end
- # get 'courses' => "courses#index", :as => "courses"
- # get 'edit_course/:id' => 'courses#edit_course',:as => "edit_course"
- # 
+ 
   
 
 
